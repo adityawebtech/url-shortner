@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free URL Shortener Tool | Instant, Secure, SEO-Ready</title>
+  <meta name="description" content="Shorten your long URLs instantly and securely with our free, SEO-optimized URL shortener tool. Track clicks, easy copy, and user-friendly interface. No signup!">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="index,follow">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Free URL Shortener Tool">
+  <meta property="og:description" content="Shorten URLs instantly and manage your links. 100% free and SEO-optimized.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourgithubusername.github.io/your-repo/">
+  <meta property="og:image" content="https://yourgithubusername.github.io/your-repo/banner.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Free URL Shortener Tool">
+  <meta name="twitter:description" content="Shorten URLs instantly and manage your links. 100% free and SEO-optimized.">
+  <meta name="twitter:image" content="https://yourgithubusername.github.io/your-repo/banner.png">
+  <link rel="canonical" href="https://yourgithubusername.github.io/your-repo/">
+  <style>
+    :root {
+      --primary:#0a66e2;
+      --secondary:#0d1117;
+      --light:#f5f6fa;
+      --accent:#26c281;
+      --danger:#ff6b6b;
+      --max-width:420px;
+      font-size:16px;
+    }
+    body {
+      font-family:system-ui,sans-serif;
+      background:var(--light);
+      color:var(--secondary);
+      margin:0;
+      padding:0;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+    header {
+      background:var(--primary);
+      color:#fff;
+      padding:1.5rem 0;
+      text-align:center;
+    }
+    header h1 {
+      margin:0 0 0.2em 0;
+      font-size:2.2rem;
+      font-weight:700;
+      letter-spacing:-1px;
+    }
+    header p {
+      margin:0;
+      font-size:1.01rem;
+      opacity:0.92;
+    }
+    main {
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .container {
+      width:90vw;
+      max-width:var(--max-width);
+      background:#fff;
+      margin:2rem auto;
+      padding:2rem 1.2rem 1.5rem 1.2rem;
+      border-radius:14px;
+      box-shadow:0 4px 24px rgba(44,62,80,0.1);
+    }
+    form#urlForm {
+      display:flex;
+      flex-direction:column;
+      gap:1.2rem;
+    }
+    label {
+      font-weight:600;
+      margin-bottom:0.3em;
+    }
+    input[type="url"] {
+      padding:0.7em 0.9em;
+      border-radius:6px;
+      border:1px solid #d0d7de;
+      font-size:1.04rem;
+      width:100%;
+    }
+    button {
+      padding:0.7em 0.9em;
+      background:var(--primary);
+      color:#fff;
+      font-size:1.06rem;
+      border:none;
+      border-radius:7px;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 2px 4px rgba(44,62,80,0.04);
+      transition:background 0.14s;
+    }
+    button:hover,button:focus{
+      background:var(--accent);
+      outline:none;
+    }
+    .result,.shortened-list {
+      margin-top:1.6em;
+    }
+    .short-url {
+      color:var(--primary);
+      font-weight:600;
+      text-decoration:underline dotted;
+      cursor:pointer;
+    }
+    .copy-btn {
+      background:var(--accent);
+      color:#fff;
+      font-size:0.97rem;
+      padding:0.4em 1em;
+      border-radius:5px;
+      border:none;
+      margin-left:1em;
+      cursor:pointer;
+      transition:background 0.13s;
+    }
+    .copy-btn:hover {
+      background:var(--primary);
+    }
+    .shortened-list table {
+      width:100%;
+      border-collapse:collapse;
+      margin-top:0.7em;
+      font-size:0.98rem;
+    }
+    .shortened-list th,.shortened-list td {
+      padding:0.45em;
+      text-align:left;
+      border-bottom:1px solid #f0f1f5;
+    }
+    .shortened-list th {
+      font-weight:650;
+      background:#f8fafd;
+    }
+    .remove-btn {
+      color:var(--danger);
+      background:none;
+      border:none;
+      font-size:1.1em;
+      cursor:pointer;
+    }
+    .info, .error {
+      margin-top:1em;
+      font-size:0.97rem;
+      padding:0.7em 1em;
+      border-radius:6px;
+    }
+    .info {background:#eafeea;color:var(--primary);}
+    .error {background:#fff5f5;color:var(--danger);}
+    @media (max-width:520px){
+      .container{padding:1rem 0.5rem;}
+      header h1{font-size:1.6rem;}
+    }
+    footer {
+      margin-top:auto;
+      background:var(--secondary);
+      color:#fff;
+      text-align:center;
+      padding:1.2rem 2vw 1.3rem 2vw;
+      font-size:1rem;
+      border-top:3px solid #1877f2;
+    }
+    footer a{color:var(--accent);text-decoration:none;font-weight:600;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Free SEO-Optimized URL Shortener</h1>
+    <p>Instantly shorten long links and manage them with advanced options. 100% free, secure, and optimized for sharing or SEO use.</p>
+  </header>
+  <main>
+    <section class="container" aria-labelledby="url-shortener-heading">
+      <h2 id="url-shortener-heading" style="margin-bottom:0.4em;font-size:1.15rem;">Shorten Your Long URL</h2>
+      <form id="urlForm" aria-label="Shorten your link">
+        <div>
+          <label for="longUrl">Long URL:</label>
+          <input type="url" id="longUrl" placeholder="https://www.your-long-url.com/page" required autocomplete="off">
+        </div>
+        <button type="submit">Shorten URL</button>
+      </form>
+      <div class="result" id="result"></div>
+      <section class="shortened-list" id="shortenedList"></section>
+    </section>
+  </main>
+  <footer>
+    <div>
+      &copy; <span id="year"></span> YourBrand. All rights reserved.<br>
+      Built by <a href="https://github.com/yourgithubusername" rel="noopener noreferrer" target="_blank">Your Name</a> |
+      <a href="mailto:contact@yourdomain.com">Contact</a>
+    </div>
+  </footer>
+  <script>
+    // Utility: Base62 encode (0-9a-zA-Z)
+    const base62chars='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    function encodeBase62(num){
+      let s='';
+      while(num>0){
+        s=base62chars[num%62]+s;
+        num=Math.floor(num/62);
+      }
+      return s.padStart(6,'0');
+    }
+    // Utility: URL validation
+    function isValidUrl(str){
+      try{
+        let url=new URL(str);
+        return url.protocol==='http:'||url.protocol==='https:';
+      }catch{ return false; }
+    }
+    // Storage: Get/set mappings in localStorage
+    function getMappings(){
+      return JSON.parse(localStorage.getItem('urlMappings')||'[]');
+    }
+    function setMappings(maps){
+      localStorage.setItem('urlMappings',JSON.stringify(maps));
+    }
+
+    function generateShortCode(){
+      // Use timestamp+rand for uniqueness.
+      let ts=Date.now(),ran=Math.floor(Math.random()*9999);
+      return encodeBase62(ts+ran).substring(0,6);
+    }
+    function addMapping(longUrl,shortCode){
+      let maps=getMappings();
+      // Add at top
+      maps.unshift({
+        longUrl:longUrl,
+        shortCode:shortCode,
+        date:new Date().toISOString(),
+        clicks:0
+      });
+      setMappings(maps);
+    }
+    function deleteMapping(shortCode){
+      let maps=getMappings();
+      setMappings(maps.filter(x=>x.shortCode!==shortCode));
+    }
+    function incrementClick(shortCode){
+      let maps=getMappings();
+      for(let i=0;i<maps.length;i++)
+        if(maps[i].shortCode===shortCode){maps[i].clicks++;break;}
+      setMappings(maps);
+    }
+
+    // UI Handlers:
+    function updateShortenedList(){
+      const list=getMappings();
+      const el=document.getElementById('shortenedList');
+      if(!list.length){
+        el.innerHTML='<div class="info">No shortened URLs yet. Start by shortening one!</div>';}
+      else{
+        let rows=list.map(x=>`<tr>
+        <td><span style="word-break:break-all">${x.longUrl}</span></td>
+        <td>
+          <span class="short-url" onclick="onShortUrlClick('${x.shortCode}')" title="Click to copy">${window.location.origin}/#${x.shortCode}</span>
+          <button class="copy-btn" onclick="navigator.clipboard.writeText('${window.location.origin}/#${x.shortCode}');event.stopPropagation();">Copy</button>
+        </td>
+        <td>${x.clicks}</td>
+        <td><button class="remove-btn" title="Delete" onclick="onDeleteShort('${x.shortCode}')">&#x1F5D1;</button></td>
+        </tr>`);
+        el.innerHTML=
+          `<table aria-label="Shortened URLs"><thead>
+            <tr>
+              <th style="width:39%">Original URL</th>
+              <th style="width:35%">Shortened URL</th>
+              <th style="width:12%">Clicks</th>
+              <th style="width:7%">Delete</th>
+            </tr>
+          </thead>
+          <tbody>${rows.join('')}</tbody></table>
+          <div style="margin-top:0.8em;">
+            <button class="copy-btn" style="background:var(--danger);font-size:0.94rem;" onclick="onClearAll()">Clear All</button>
+          </div>`;
+      }
+    }
+    // Handle click/copy to URL
+    function onShortUrlClick(sc){
+      const urlObj=getMappings().find(x=>x.shortCode===sc);
+      if(urlObj){
+        incrementClick(sc);
+        // Copy to clipboard & feedback
+        navigator.clipboard.writeText(window.location.origin+'/#'+sc);
+        alert('Short URL copied to clipboard:\n'+window.location.origin+'/#'+sc);
+        updateShortenedList();
+      }
+    }
+    // Delete a specific URL
+    function onDeleteShort(sc){
+      if(confirm('Are you sure you want to delete this short URL?')){
+        deleteMapping(sc);
+        updateShortenedList();
+      }
+    }
+    // Clear all URLs
+    function onClearAll(){
+      if(confirm('Delete ALL shortened URLs?')){
+        setMappings([]);
+        updateShortenedList();
+      }
+    }
+
+    // Listen for form submit
+    document.getElementById('urlForm').onsubmit=function(e){
+      e.preventDefault();
+      const url=document.getElementById('longUrl').value.trim();
+      const result=document.getElementById('result');
+      if(!isValidUrl(url)){
+        result.innerHTML='<div class="error">Please enter a valid URL starting with http:// or https://</div>';
+        return;
+      }
+      let sc=generateShortCode();
+      addMapping(url,sc);
+      result.innerHTML=`<div class="info">Your short URL: <span class="short-url" onclick="navigator.clipboard.writeText('${window.location.origin}/#${sc}')">${window.location.origin}/#${sc}</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('${window.location.origin}/#${sc}')">Copy</button>
+      </div>`;
+      updateShortenedList();
+      document.getElementById('longUrl').value='';
+    };
+
+    // Redirect if a short code is found in hash (mock in-memory redirect)
+    function checkRedirect(){
+      const h=window.location.hash;
+      if(h.length>1){
+        let sc=h.substring(1,7);
+        let found=getMappings().find(x=>x.shortCode===sc);
+        if(found){
+          incrementClick(sc);
+          window.location.href=found.longUrl;
+        }
+      }
+    }
+    // On load setup
+    window.onload=function(){
+      document.getElementById('year').textContent=(new Date()).getFullYear();
+      updateShortenedList();
+      checkRedirect();
+    };
+  </script>
+</body>
+</html>
