@@ -162,7 +162,7 @@ function drawFormOnImage(ctx, fields, w, h) {
   ctx.fillText(dateStr, 246, 1060);
 
   // Applicant Name [883,1060]
-  ctx.fillText(fields.applicant_name, 883, 1054);
+  ctx.fillText(fields.applicant_name, 883, 1053);
 
   // Signature [934,1004]
   if(signatureImage) {
@@ -172,7 +172,7 @@ function drawFormOnImage(ctx, fields, w, h) {
     if(aspect>sw/sh) sh=sw/aspect;
     else sw=sh*aspect;
     ctx.globalAlpha=0.94;
-    ctx.drawImage(signatureImage, 927, 990, sw, sh);
+    ctx.drawImage(signatureImage, 922, 987, sw, sh);
     ctx.globalAlpha=1.0;
   }
 }
