@@ -146,11 +146,11 @@ function drawFormOnImage(ctx, fields, w, h) {
   ctx.font='18px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
   let addr = fields.address.trim();
   if(addr.length <= 38) {
-    ctx.fillText(addr, 723, 610);
+    ctx.fillText(addr, 723, 605);
   } else {
     let first = addr.substring(0, 38), rest = addr.substring(38);
-    ctx.fillText(first, 723, 610);
-    ctx.fillText(rest, 166, 664); // extra details
+    ctx.fillText(first, 723, 605);
+    ctx.fillText(rest, 166, 659); // extra details
   }
 
   ctx.font='19px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
@@ -159,10 +159,10 @@ function drawFormOnImage(ctx, fields, w, h) {
 
   // Date [246,1064], convert to dd-mm-yyyy
   let dateStr = fields.date ? fields.date.split('-').reverse().join('-') : '';
-  ctx.fillText(dateStr, 246, 1060);
+  ctx.fillText(dateStr, 246, 1055);
 
   // Applicant Name [883,1060]
-  ctx.fillText(fields.applicant_name, 883, 1053);
+  ctx.fillText(fields.applicant_name, 883, 1050);
 
   // Signature [934,1004]
   if(signatureImage) {
@@ -172,7 +172,7 @@ function drawFormOnImage(ctx, fields, w, h) {
     if(aspect>sw/sh) sh=sw/aspect;
     else sw=sh*aspect;
     ctx.globalAlpha=0.94;
-    ctx.drawImage(signatureImage, 922, 987, sw, sh);
+    ctx.drawImage(signatureImage, 922, 980, sw, sh);
     ctx.globalAlpha=1.0;
   }
 }
