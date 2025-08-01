@@ -99,10 +99,6 @@
     </div>
   </div>
 <script>
-// ========== Universal Hindi Font ==========
-// All text rendered using: Noto Sans Devanagari, Mangal, Arial Unicode MS, Arial, sans-serif
-
-// ==== Signature handling ====
 let signatureImage=null;
 function makeSignatureTransparent(file, callback) {
   const img = new Image(); img.onload = function() {
@@ -112,7 +108,6 @@ function makeSignatureTransparent(file, callback) {
     let imgd = ctx.getImageData(0,0,cv.width,cv.height);
     let d = imgd.data;
     for(let i=0;i<d.length;i+=4) {
-      // All-nearly-white to transparent
       if(d[i]>240 && d[i+1]>240 && d[i+2]>240){ d[i+3]=0; }
     }
     ctx.putImageData(imgd,0,0);
@@ -129,68 +124,47 @@ document.getElementById("signatureInput").addEventListener("change",function(e){
     el.style.display="block";
   });
 });
-
-// ==== Draw entries on template ====
 function drawFormOnImage(ctx, fields, w, h) {
-  // Font stack for Hindi
   ctx.font='16.5px "Noto Sans Devanagari", Mangal, "Arial Unicode MS", Arial, sans-serif';
   ctx.fillStyle="#161716";
   ctx.textBaseline="top";
-  // Adjust coordinates to fit sdf.jpg (tuned for A4 scanned, 826x1169px, tweak if your template size differs)
-  // Name
   ctx.fillText(fields.name, 110, 110);
-  // Father's Name
   ctx.fillText(fields.father, 205, 110);
-  // Age
   ctx.fillText(fields.age, 323, 110);
-  // Occupation
   ctx.fillText(fields.occupation, 465, 110);
-  // Address (multi-line safe)
   ctx.font='16px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
   let addressLines = fields.address.split(/\r?\n/);
   for(let i=0;i<addressLines.length;i++) {
     ctx.fillText(addressLines[i], 88, 146 + i*21);
   }
-  // Place
   ctx.font='16.5px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
   ctx.fillText(fields.place, 110, 260);
-  // Date (convert to dd-mm-yyyy visually)
   let dateStr = fields.date ? fields.date.split('-').reverse().join('-') : '';
   ctx.fillText(dateStr, 288, 260);
-  // Applicant Name (bottom right)
   ctx.fillText(fields.applicant_name, 462, 285);
-  // Signature (bottom right above name)
   if(signatureImage) {
     let x=370, y=220, sw=130, sh=37;
-    // Keep signature proportion correct inside box
     let aspect=signatureImage.width/signatureImage.height;
     if(aspect>sw/sh) sh=sw/aspect;
     else sw=sh*aspect;
     ctx.globalAlpha=0.94;
-    ctx.drawImage(signatureImage, 392, 210, sw, sh); // Normally fine-tune as per your template!
+    ctx.drawImage(signatureImage, 392, 210, sw, sh);
     ctx.globalAlpha=1.0;
   }
 }
-
-// ==== On form submit ====
 document.getElementById("declarationForm").addEventListener('submit', function(e){
   e.preventDefault();
   if(!signatureImage){ alert("कृपया हस्ताक्षर अपलोड करें | Please upload signature."); return; }
-  // Prepare field data
   let f = {};
   for(const el of e.target.elements) if(el.name) f[el.name]=el.value;
-  // Load template image
   const img=new Image();
   img.onload=function(){
-    // Original size for sharpest output
     const w=img.naturalWidth, h=img.naturalHeight;
     const c = document.createElement('canvas');
     c.width=w; c.height=h;
     const ctx = c.getContext('2d');
-    ctx.drawImage(img,0,0,w,h); // base form
+    ctx.drawImage(img,0,0,w,h);
     drawFormOnImage(ctx, f, w, h);
-
-    // JPEG compress to under 100KB (reduce q until OK)
     let q=0.95, out=c.toDataURL('image/jpeg', q);
     while(out.length/1.38>100*1024 && q>0.40) {
       q-=0.08;
@@ -200,14 +174,14 @@ document.getElementById("declarationForm").addEventListener('submit', function(e
     document.getElementById("download-link").href = out;
     document.getElementById("result-img").src = out;
   };
-  img.src="/sdf.jpg";
+  img.onerror = function() {
+    alert('⚠️ फॉर्म टेम्पलेट इमेज लोड नहीं हो पाई!\nCheck this path:\nhttps://adityawebtech.github.io/url-shortner/sdf.jpg');
+  };
+  img.src = "https://adityawebtech.github.io/url-shortner/sdf.jpg";
 });
-
-// Hide download on any edit
 document.getElementById('declarationForm').addEventListener('input', function(){
   document.getElementById("output").style.display="none";
 });
-
 </script>
 </body>
 </html>
