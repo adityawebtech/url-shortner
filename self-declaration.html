@@ -219,6 +219,13 @@ document.getElementById("declarationForm").addEventListener('submit', function(e
       out = c.toDataURL('image/jpeg',q);
     }
     document.getElementById("output").style.display="block";
+    // --- ADD THIS BLOCK HERE ---
+let applicantNameClean = (f.applicant_name || "user").replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g,"");
+let websitePart = "www.toolswagon.site"; // Change this to your actual site!
+let downloadFileName = `${websitePart}_${applicantNameClean}_self-declaration.jpg`;
+document.getElementById("download-link").setAttribute("download", downloadFileName);
+// --- END OF BLOCK ---
+  
     document.getElementById("download-link").href = out;
     document.getElementById("result-img").src = out;
   };
