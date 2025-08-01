@@ -142,16 +142,39 @@ function drawFormOnImage(ctx, fields, w, h) {
   // Occupation [482, 613]
   ctx.fillText(fields.occupation, 482, 609);
 
-  // Address [727, 617], wrap if long or use alternate if lines needed
-  ctx.font='18px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
-  let addr = fields.address.trim();
-  if(addr.length <= 38) {
-    ctx.fillText(addr, 723, 605);
+  // Address [723, 605] (first line), [166, 659] (second line), with word/hyphen logic
+ctx.font = '18px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
+let addr = fields.address.trim();
+let maxChars = 38;
+
+if (addr.length <= maxChars) {
+  ctx.fillText(addr, 723, 605);
+} else {
+  // Try breaking at last space before maxChars
+  let breakIndex = addr.lastIndexOf(" ", maxChars);
+  let line1, line2;
+
+  if (breakIndex === -1) {
+    // No space, break at maxChars-1, force hyphen
+    line1 = addr.substring(0, maxChars - 1) + "-";
+    line2 = addr.substring(maxChars - 1);
   } else {
-    let first = addr.substring(0, 38), rest = addr.substring(38);
-    ctx.fillText(first, 723, 605);
-    ctx.fillText(rest, 166, 659); // extra details
+    line1 = addr.substring(0, breakIndex);
+    line2 = addr.substring(breakIndex + 1);
+    // If word is broken, end line1 with hyphen (only if second line doesn't start with space)
+    if (
+      addr.charAt(breakIndex + 1) !== " " && // next char is not space
+      breakIndex < addr.length - 1 &&        // not at end
+      !/\s/.test(addr.charAt(breakIndex)) && // current char not a space (safety)
+      !line1.endsWith(" ")                   // doesn't already end with space
+    ) {
+      line1 += "-";
+    }
   }
+  ctx.fillText(line1, 723, 605);
+  ctx.fillText(line2, 166, 659);
+}
+
 
   ctx.font='19px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
   // Place [240,1011]
