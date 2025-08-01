@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UP स्वप्रमाणित घोषणा-पत्र (Self Declaration Form)</title>
+  <title>UP स्वप्रमाणित घोषणा-पत्र</title>
   <style>
     body { font-family: "Noto Sans Devanagari", Mangal, "Arial Unicode MS", Arial, sans-serif; margin:0; background: #f5f6fa;}
     .container { max-width: 950px; margin: 15px auto; background:#fff; border-radius:8px; box-shadow:0 1px 6px #ccc; padding: 18px; }
@@ -124,41 +124,66 @@ document.getElementById("signatureInput").addEventListener("change",function(e){
     el.style.display="block";
   });
 });
+
+// Coordinates (provided by user) used below
 function drawFormOnImage(ctx, fields, w, h) {
-  ctx.font='16.5px "Noto Sans Devanagari", Mangal, "Arial Unicode MS", Arial, sans-serif';
-  ctx.fillStyle="#161716";
+  ctx.font='19px "Noto Sans Devanagari", Mangal, "Arial Unicode MS", Arial, sans-serif';
+  ctx.fillStyle="#191919";
   ctx.textBaseline="top";
-  ctx.fillText(fields.name, 110, 110);
-  ctx.fillText(fields.father, 205, 110);
-  ctx.fillText(fields.age, 323, 110);
-  ctx.fillText(fields.occupation, 465, 110);
-  ctx.font='16px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
-  let addressLines = fields.address.split(/\r?\n/);
-  for(let i=0;i<addressLines.length;i++) {
-    ctx.fillText(addressLines[i], 88, 146 + i*21);
+  // Name [318, 566]
+  ctx.fillText(fields.name, 318, 566);
+
+  // Father Name [810, 559]
+  ctx.fillText(fields.father, 810, 559);
+
+  // Age [218, 618]
+  ctx.fillText(fields.age, 218, 618);
+  
+  // Occupation [482, 613]
+  ctx.fillText(fields.occupation, 482, 613);
+
+  // Address [727, 617], wrap if long or use alternate if lines needed
+  ctx.font='18px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
+  let addr = fields.address.trim();
+  if(addr.length <= 38) {
+    ctx.fillText(addr, 727, 617);
+  } else {
+    let first = addr.substring(0, 38), rest = addr.substring(38);
+    ctx.fillText(first, 727, 617);
+    ctx.fillText(rest, 169, 669); // extra details
   }
-  ctx.font='16.5px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
-  ctx.fillText(fields.place, 110, 260);
+
+  ctx.font='19px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
+  // Place [240,1011]
+  ctx.fillText(fields.place, 240, 1011);
+
+  // Date [246,1064], convert to dd-mm-yyyy
   let dateStr = fields.date ? fields.date.split('-').reverse().join('-') : '';
-  ctx.fillText(dateStr, 288, 260);
-  ctx.fillText(fields.applicant_name, 462, 285);
+  ctx.fillText(dateStr, 246, 1064);
+
+  // Applicant Name [883,1060]
+  ctx.fillText(fields.applicant_name, 883, 1060);
+
+  // Signature [934,1004]
   if(signatureImage) {
-    let x=370, y=220, sw=130, sh=37;
+    // Draw signature, scale into form's signature area (adjust width/height as needed)
+    let sw=160, sh=45; // width/height of signature box (tune as needed)
     let aspect=signatureImage.width/signatureImage.height;
     if(aspect>sw/sh) sh=sw/aspect;
     else sw=sh*aspect;
     ctx.globalAlpha=0.94;
-    ctx.drawImage(signatureImage, 392, 210, sw, sh);
+    ctx.drawImage(signatureImage, 934, 1004, sw, sh);
     ctx.globalAlpha=1.0;
   }
 }
+
 document.getElementById("declarationForm").addEventListener('submit', function(e){
   e.preventDefault();
   if(!signatureImage){ alert("कृपया हस्ताक्षर अपलोड करें | Please upload signature."); return; }
   let f = {};
   for(const el of e.target.elements) if(el.name) f[el.name]=el.value;
-  const img=new Image();
-  img.onload=function(){
+  const img = new Image();
+  img.onload = function(){
     const w=img.naturalWidth, h=img.naturalHeight;
     const c = document.createElement('canvas');
     c.width=w; c.height=h;
