@@ -131,38 +131,38 @@ function drawFormOnImage(ctx, fields, w, h) {
   ctx.fillStyle="#191919";
   ctx.textBaseline="top";
   // Name [318, 566]
-  ctx.fillText(fields.name, 318, 566);
+  ctx.fillText(fields.name, 316, 564);
 
   // Father Name [810, 559]
-  ctx.fillText(fields.father, 810, 559);
+  ctx.fillText(fields.father, 808, 558);
 
   // Age [218, 618]
-  ctx.fillText(fields.age, 218, 618);
+  ctx.fillText(fields.age, 218, 616);
   
   // Occupation [482, 613]
-  ctx.fillText(fields.occupation, 482, 613);
+  ctx.fillText(fields.occupation, 482, 611);
 
   // Address [727, 617], wrap if long or use alternate if lines needed
   ctx.font='18px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
   let addr = fields.address.trim();
   if(addr.length <= 38) {
-    ctx.fillText(addr, 727, 617);
+    ctx.fillText(addr, 727, 614);
   } else {
     let first = addr.substring(0, 38), rest = addr.substring(38);
-    ctx.fillText(first, 727, 617);
-    ctx.fillText(rest, 169, 669); // extra details
+    ctx.fillText(first, 727, 614);
+    ctx.fillText(rest, 169, 667); // extra details
   }
 
   ctx.font='19px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
   // Place [240,1011]
-  ctx.fillText(fields.place, 240, 1011);
+  ctx.fillText(fields.place, 238, 1010);
 
   // Date [246,1064], convert to dd-mm-yyyy
   let dateStr = fields.date ? fields.date.split('-').reverse().join('-') : '';
-  ctx.fillText(dateStr, 246, 1064);
+  ctx.fillText(dateStr, 246, 1063);
 
   // Applicant Name [883,1060]
-  ctx.fillText(fields.applicant_name, 883, 1060);
+  ctx.fillText(fields.applicant_name, 883, 1057);
 
   // Signature [934,1004]
   if(signatureImage) {
@@ -172,7 +172,7 @@ function drawFormOnImage(ctx, fields, w, h) {
     if(aspect>sw/sh) sh=sw/aspect;
     else sw=sh*aspect;
     ctx.globalAlpha=0.94;
-    ctx.drawImage(signatureImage, 934, 1004, sw, sh);
+    ctx.drawImage(signatureImage, 931, 999, sw, sh);
     ctx.globalAlpha=1.0;
   }
 }
