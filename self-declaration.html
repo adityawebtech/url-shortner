@@ -214,7 +214,7 @@ document.getElementById("declarationForm").addEventListener('submit', function(e
     ctx.drawImage(img,0,0,w,h);
     drawFormOnImage(ctx, f, w, h);
     let q=0.95, out=c.toDataURL('image/jpeg', q);
-    while(out.length/1.38>100*1024 && q>0.40) {
+    while(out.length/1.38>98*1024 && q>0.40) {
       q-=0.08;
       out = c.toDataURL('image/jpeg',q);
     }
