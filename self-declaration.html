@@ -2,54 +2,62 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <title>UP स्वप्रमाणित घोषणा-पत्र - Self Declaration Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UP स्वप्रमाणित घोषणा-पत्र (Self Declaration Form)</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f3f3f3; margin: 0; }
-    .container { max-width: 850px; background: #fff; margin: 30px auto; border-radius: 7px; box-shadow: 0 0 8px #ccc; padding: 20px; }
-    h2 { text-align: center; margin:0 0 20px 0; }
-    form { display: flex; flex-wrap: wrap; gap: 15px;}
-    .field { flex: 1 0 300px; min-width: 230px;  }
-    .field label { font-weight: bold; display: block; margin-bottom: 4px; }
-    .field input, .field textarea { width: 100%; padding: 7px; border: 1px solid #888; border-radius: 4px; font-size: 15px;}
-    .field input[type="file"] { padding: 2px;}
-    #preview-signature { width: 150px; display: block; margin:8px 0;}
-    .btn { padding:9px 17px; background: #097671; color: #fff; border:0; border-radius: 4px; cursor:pointer; font-size:16px; }
+    body { font-family: "Noto Sans Devanagari", Mangal, "Arial Unicode MS", Arial, sans-serif; margin:0; background: #f5f6fa;}
+    .container { max-width: 950px; margin: 15px auto; background:#fff; border-radius:8px; box-shadow:0 1px 6px #ccc; padding: 18px; }
+    h2 { text-align:center; margin:0 0 20px 0;}
     .instructions {
-      background: #e7f5ffd0;
+      background: #e2fff5;
       padding: 9px 15px;
       border-radius: 5px;
-      border: 1px solid #b6e4ff;
-      margin-bottom: 12px;
       font-size: 15px;
+      margin-bottom: 13px;
+      line-height:1.7;
     }
-    .output-block { text-align: center; margin-top:24px;}
-    #result-img { max-width:99%; border: 1px solid #bbb; margin-top: 7px; }
-    .lang { font-weight:bold; color: #066;}
+    form { display:flex; flex-wrap:wrap; gap:13px; }
+    .field { flex:1 0 260px; min-width:170px; }
+    .field label { font-weight:600; display:block; margin-bottom:4px;}
+    .field input, .field textarea {
+      width: 98%; font-size:15px; padding:6.5px; border: 1px solid #bbb; border-radius: 4px; margin-bottom: 2px; background:#fafcff;}
+    .field input[type="file"] { padding:3px;}
+    #preview-signature { width:120px; margin:10px 0; display:none; border:1px solid #ddd; border-radius:3px;}
+    .btn { background:#097671; color:#fff; border-radius:4px; border:0; padding:9px 18px; font-size:16px; cursor:pointer;}
+    .btn:active { background:#064d4b; }
+    .output-block { text-align:center; margin-top:22px;}
+    #result-img { max-width:98%; border:1px solid #b8b8b8; margin-top:12px;}
     @media (max-width: 700px) {
-      .container { max-width: 100%; }
-      .field { flex: 1 0 100%; }
+      .container { max-width: 100vw; padding:5px; }
+      .field { min-width:97vw; }
+      label, .instructions { font-size:15px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>स्वप्रमाणित घोषणा-पत्र (Self Declaration Form – UP)<br><span style="font-size:16px;color:#222;">ऑनलाइन फॉर्म भरें व इमेज डाउनलोड करें</span></h2>
+    <h2>
+      स्वप्रमाणित घोषणा-पत्र (Self Declaration Form – UP)<br>
+      <span style="font-size:15.5px;color:#1a465c;">ऑनलाइन फॉर्म भरें, हिंदी-इंग्लिश, मोबाइल-फ्रेंडली</span>
+    </h2>
     <div class="instructions">
-      <span class="lang">निर्देश | Instructions:</span><br>
-      1. नीचे पूछी गई प्रविष्टियाँ (Name, पिता का नाम आदि) हिंदी-अंग्रेज़ी में भरें।<br>
-      2. हस्ताक्षर (Signature) jpg/png में अपलोड करें। इसमें पीछे यदि सफेद रंग है तो वह अपने-आप हट जाएगा।<br>
-      3. 'Generate & Download' दबाकर इमेज (&lt;100KB) डाउनलोड करें।<br>
-      <span style="color:#a43;font-size:14px">फॉर्म में सही-सही/अपना विशेष विवरण भरें! (Fill all details carefully, will be printed on the official format!)<br>
+      <b>निर्देश (Instructions):</b><br>
+      1. सभी प्रविष्टियाँ (Name, पिता का नाम आदि) हिंदी/English में भरें।<br>
+      2. हस्ताक्षर (Signature) JPG/PNG फ़ाइल अपलोड करें। सफेद बैकग्राउंड अपने-आप ट्रांसपेरेंट (हट) हो जाएगा।<br>
+      3. "Generate & Download" बटन से इमेज (&lt;100KB) तुरंत डाउनलोड करें।
+      <br>
+      <span style="color:#a43;font-size:14px;">
+        कृपया जानकारी ध्यानपूर्वक भरें! (Fill details correctly, it will be printed onto the official form.)
       </span>
     </div>
     <form id="declarationForm" autocomplete="off">
       <div class="field">
         <label>नाम (Name):</label>
-        <input type="text" name="name" required>
+        <input type="text" name="name" maxlength="45" required>
       </div>
       <div class="field">
         <label>पिता का नाम (Father's Name):</label>
-        <input type="text" name="father" required>
+        <input type="text" name="father" maxlength="45" required>
       </div>
       <div class="field">
         <label>आयु (Age):</label>
@@ -57,49 +65,45 @@
       </div>
       <div class="field">
         <label>व्यवसाय (Occupation):</label>
-        <input type="text" name="occupation" required>
+        <input type="text" name="occupation" maxlength="35" required>
       </div>
-      <div class="field" style="flex-basis: 98%;">
+      <div class="field" style="flex-basis: 95%;">
         <label>निवासी/पूरा पता (Address):</label>
-        <textarea name="address" rows="2" required></textarea>
+        <textarea name="address" rows="2" maxlength="85" required></textarea>
       </div>
       <div class="field">
         <label>स्थल (Place):</label>
-        <input type="text" name="place" required>
+        <input type="text" name="place" maxlength="35" required>
       </div>
       <div class="field">
         <label>दिनांक (Date):</label>
         <input type="date" name="date" required>
       </div>
       <div class="field">
-        <label>हस्ताक्षर (Signature - jpg/png, सफेद बैकग्राउंड हटेगा):</label>
+        <label>हस्ताक्षर (Signature - JPG/PNG):<br><span style="font-weight:400;">(सफेद बैकग्राउंड हटेगा)</span></label>
         <input type="file" accept="image/png,image/jpeg" id="signatureInput" required>
-        <img id="preview-signature" src="" alt="Signature Preview" style="display:none;">
+        <img id="preview-signature" src="" alt="Signature Preview">
       </div>
       <div class="field">
         <label>आवेदक का नाम (Applicant Name):</label>
-        <input type="text" name="applicant_name" required>
+        <input type="text" name="applicant_name" maxlength="45" required>
       </div>
-      <div style="flex-basis:100%;margin-top:10px;text-align:center;">
+      <div style="flex-basis:100%;margin-top:13px;text-align:center;">
         <button class="btn" type="submit">Generate & Download</button>
       </div>
     </form>
-
     <div class="output-block" id="output" style="display: none;">
       <h3>डाउनलोड करें (Download):</h3>
       <a id="download-link" href="#" download="UP-Declaration.jpg" class="btn">Download Image</a>
       <div><img id="result-img" src=""></div>
     </div>
   </div>
-
 <script>
-const base64Img = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAlgCWAAD/2wBDAAE...put your big base64 block here. (You can paste the complete code you gave for your image base64) ...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ZOM4+nt9KkooAjUtkZzj6e30oYHdnGeQePbHWpKKAEByM4x7U1hxwvXuB0p9NHyjk9/wDP+fegAUnGCCMADnvS4HoPyoBB6GmMhJJ4/wAj6UASUUhGRigKFzjPPrQAtFFFACYHoPyFGB6D8hS0UAFFFFABRRRQAUUUUAJgeg/KloooAKKKKAEwPQfkKMD0H5ClooAKKKY6s2NpAxnORnrigB9FRCNu5B9+n9KloAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAOYP8AyNUP/YIb/wBGiunrmQM+J42PUaR/OXn+VdNQAUUUUAFFFFAFfZznZz67efzxUu5M54z6459PT0p+R0zz6VAoYjOMe3U/yoAn60mB6D8qRScYIIwAOe9OoAYHyQMdff8A+tT6iUHcOD37exqWgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBqfdH4/zNOpqfdH4/zNOoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACimgNnkjH+fanUAFIx2gnBOOyjJ644H+eKWigAByM8/iMH8qaUBOef8AP4U6igAooooAKKKKACiiigBh2uNp5B7Y9Oe4x2pVULwOnpx/SlwPQflS0AFFFFABRRRQAU1m244zmnUEA9QD9aAEByAfWloooAKKKKAEJwCfSkVt2eMYp1GAOgAoAKaEAOef8/hTqjBcnuPqP/rUASUUg3c5IPp/nApaACiiigApCMjFLRQAwsFOAv49M/pzTgcgH1pSAeoB+tFABRRRQAUVGxbJxnH09vpUlADWbbjjOaUHIB9aUgHqAfrRQAUUUUAFIQD1/wDr0tRqWyM5x9Pb6UAPChc4zz60tFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRTWbbjjOaUHIB9aAFooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACmv90/h/MU6igDmD/yNUP/AGCG/wDRorp65g/8jRbv/BJpLBG7MRJuwP8AgIz9K6egAooooAKKKKAI2Qkk8f5H0pgOCD6U9mIJAP6D0qNuHAHTn+QNAEnme36//Wp4OQD61BTgxHAP6CgBylsjOcfT2+lSUxW4JJ6H/D0pwIPQ0ALUalsjOcfT2+lSUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRSBgTgH9DS0AFFFFABRRRQAjZwcdf8A69IpY5zntjIx606igAooooAKKKKACiiigBpDZ4Ix/n2p1NIbPBGP8+1KwyCP89aAFoqMJ6n8v/ringYGKAFooooAKKKCQOTQAUU3evr+h/wpwIPIoAKKjVCCDx/kfSnkgdTQAtI2cHHX/wCvSb19f0P+FKGBOAf0NACKWOc57YyMetOpCQOppQQeRQAUUUUAMBwgPp/jTlO4ZxjnFMT5k59WHHs5A/lTwABgUALRRTCoySTgUAPopu9fX9D/AIUoIPQ0ALRUbISSeP8AI+lOAbPJGP8APtQAj5ypAJwc/wAqcDkZxj2paKAEwPQflS0UUAFFIWAOCf0NLQAUUVGyEknj/I+lAElGAOgAqLYfUfr/AIU9VK5zjnH9aAHUUUUARsxBwOMfrQN5Gcj/AD+FKyA5Oef0pUBCgHrz/M46e1ADqKjQDr3B/p/9enndxggeuf8A9RoAYxbJxnH09vpTd7ev6D/CpRnHPWo9h9R+v+FACb29f0H+FG9vX9B/hS7D6j9f8KNh9R+v+FAEjZwcdf8A69MG898fUY/pTlJI59f8KQ7iSAQMY6+4+hoAUglcEjPr26/T+lRAZOKeUYnJI/z+FMBIORQBMOAB6AUtRj585J46dO/4e1PAwMUAI3GG9M/rxS8EAkDpnnnrTAhzyRj26/yp+QoAJ+n4UALRTd6+v6H/AApxIHJoAjKlmbGOMdfpSgOOAR/n8KUEEkg5zjNBDZ4Ix/n2oAj3t6/oP8KUOR15/"
-// Paste your entire base64 string (already done above, truncated here for brevity)
+// ========== Universal Hindi Font ==========
+// All text rendered using: Noto Sans Devanagari, Mangal, Arial Unicode MS, Arial, sans-serif
 
+// ==== Signature handling ====
 let signatureImage=null;
-let transparentSignature=null;
-
-// --- Transparentize signature: remove white bg ---
 function makeSignatureTransparent(file, callback) {
   const img = new Image(); img.onload = function() {
     const cv = document.createElement('canvas'), ctx = cv.getContext('2d');
@@ -107,110 +111,103 @@ function makeSignatureTransparent(file, callback) {
     ctx.drawImage(img,0,0);
     let imgd = ctx.getImageData(0,0,cv.width,cv.height);
     let d = imgd.data;
-    for(let i=0; i<d.length; i+=4) {
-      // white threshold
-      if(d[i]>245 && d[i+1]>245 && d[i+2]>245){
-        d[i+3]=0;
-      }
+    for(let i=0;i<d.length;i+=4) {
+      // All-nearly-white to transparent
+      if(d[i]>240 && d[i+1]>240 && d[i+2]>240){ d[i+3]=0; }
     }
     ctx.putImageData(imgd,0,0);
     callback(cv);
   }; img.src = URL.createObjectURL(file);
 }
-
 document.getElementById("signatureInput").addEventListener("change",function(e){
   const file = e.target.files[0];
   if(!file) return;
   makeSignatureTransparent(file, function(canvas){
     signatureImage=canvas;
-    document.getElementById('preview-signature').src=canvas.toDataURL();
-    document.getElementById('preview-signature').style.display="block";
+    let el=document.getElementById('preview-signature');
+    el.src=canvas.toDataURL();
+    el.style.display="block";
   });
 });
 
-// --- Map input fields to positions (estimate manually for the provided image) ---
-function drawFormOnImage(ctx, f) {
-  ctx.font='15.6px Kruti Dev, Mangal, Arial,sans-serif';
-  ctx.fillStyle="#111";
+// ==== Draw entries on template ====
+function drawFormOnImage(ctx, fields, w, h) {
+  // Font stack for Hindi
+  ctx.font='16.5px "Noto Sans Devanagari", Mangal, "Arial Unicode MS", Arial, sans-serif';
+  ctx.fillStyle="#161716";
+  ctx.textBaseline="top";
+  // Adjust coordinates to fit sdf.jpg (tuned for A4 scanned, 826x1169px, tweak if your template size differs)
   // Name
-  ctx.fillText(f.name, 108, 106);
+  ctx.fillText(fields.name, 110, 110);
   // Father's Name
-  ctx.fillText(f.father, 178, 106);
+  ctx.fillText(fields.father, 205, 110);
   // Age
-  ctx.fillText(f.age, 315, 106);
+  ctx.fillText(fields.age, 323, 110);
   // Occupation
-  ctx.fillText(f.occupation, 430, 106);
-  // Address
-  ctx.font='15.1px Mangal, Arial,sans-serif';
-  ctx.fillText(f.address.replace(/\n/g,' '), 89, 134);
-  // Place (Sthaan) -- "स्थान"
-  ctx.font='15.7px Kruti Dev, Arial,sans-serif';
-  ctx.fillText(f.place, 108, 242);
-  // Date -- "दिनांक"
-  ctx.fillText(f.date, 284, 242);
-  // Applicant name (right bottom)
-  ctx.font='16px Kruti Dev, Mangal, Arial,sans-serif';
-  ctx.fillText(f.applicant_name, 470, 264);
-  // Signature
+  ctx.fillText(fields.occupation, 465, 110);
+  // Address (multi-line safe)
+  ctx.font='16px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
+  let addressLines = fields.address.split(/\r?\n/);
+  for(let i=0;i<addressLines.length;i++) {
+    ctx.fillText(addressLines[i], 88, 146 + i*21);
+  }
+  // Place
+  ctx.font='16.5px "Noto Sans Devanagari", Mangal, Arial, sans-serif';
+  ctx.fillText(fields.place, 110, 260);
+  // Date (convert to dd-mm-yyyy visually)
+  let dateStr = fields.date ? fields.date.split('-').reverse().join('-') : '';
+  ctx.fillText(dateStr, 288, 260);
+  // Applicant Name (bottom right)
+  ctx.fillText(fields.applicant_name, 462, 285);
+  // Signature (bottom right above name)
   if(signatureImage) {
-    // Draw in rectangle at right-bottom (col approx. 385, row 210, width 130, h 35)
-    let sw=130, sh=35;
+    let x=370, y=220, sw=130, sh=37;
+    // Keep signature proportion correct inside box
     let aspect=signatureImage.width/signatureImage.height;
-    if(aspect>sw/sh) { sh = sw/aspect; }
-    else { sw = sh*aspect; }
-    ctx.globalAlpha=0.92;
-    ctx.drawImage(signatureImage, 385, 210, sw, sh);
+    if(aspect>sw/sh) sh=sw/aspect;
+    else sw=sh*aspect;
+    ctx.globalAlpha=0.94;
+    ctx.drawImage(signatureImage, 392, 210, sw, sh); // Normally fine-tune as per your template!
     ctx.globalAlpha=1.0;
   }
 }
 
+// ==== On form submit ====
 document.getElementById("declarationForm").addEventListener('submit', function(e){
   e.preventDefault();
   if(!signatureImage){ alert("कृपया हस्ताक्षर अपलोड करें | Please upload signature."); return; }
-
-  // Prepare fields
+  // Prepare field data
   let f = {};
-  for(let el of e.target.elements){
-    if(el.name) f[el.name]=el.value;
-  }
-  f.date = f.date.split('-').reverse().join('-') || ''; // dd-mm-yyyy
-
-  // Draw image
+  for(const el of e.target.elements) if(el.name) f[el.name]=el.value;
+  // Load template image
   const img=new Image();
   img.onload=function(){
-    // Setup canvas as per image's original size
+    // Original size for sharpest output
     const w=img.naturalWidth, h=img.naturalHeight;
-    const c = document.createElement('canvas'); 
+    const c = document.createElement('canvas');
     c.width=w; c.height=h;
     const ctx = c.getContext('2d');
-    ctx.drawImage(img,0,0);
-    drawFormOnImage(ctx, f);
+    ctx.drawImage(img,0,0,w,h); // base form
+    drawFormOnImage(ctx, f, w, h);
 
-    // Output - compress if needed till under 100kb
-    let finalDataUrl = c.toDataURL('image/jpeg',0.88), q=0.88;
-    while(finalDataUrl.length/1.38 > 100*1024 && q>0.45){ // 1.38 ~ base64 expansion
+    // JPEG compress to under 100KB (reduce q until OK)
+    let q=0.95, out=c.toDataURL('image/jpeg', q);
+    while(out.length/1.38>100*1024 && q>0.40) {
       q-=0.08;
-      finalDataUrl = c.toDataURL('image/jpeg',q);
+      out = c.toDataURL('image/jpeg',q);
     }
-    // Show
     document.getElementById("output").style.display="block";
-    document.getElementById("download-link").href = finalDataUrl;
-    document.getElementById("result-img").src = finalDataUrl;
+    document.getElementById("download-link").href = out;
+    document.getElementById("result-img").src = out;
   };
-  img.src=base64Img;
+  img.src="/sdf.jpg";
 });
 
-// hide output on re-edit
+// Hide download on any edit
 document.getElementById('declarationForm').addEventListener('input', function(){
   document.getElementById("output").style.display="none";
 });
 
-// Hint for font, works in most Hindi browsers, else falls back to Arial
-(function(){
-  let st=document.createElement('style');
-  st.textContent="@font-face{font-family:'Kruti Dev';src:local('Kruti Dev 010'),local('Kruti Dev 010 Medium');}";
-  document.head.appendChild(st);
-})();
 </script>
 </body>
 </html>
